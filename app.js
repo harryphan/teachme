@@ -9,15 +9,13 @@ var express = require('express')
     , fs = require('fs')
     , config = require('./config/config')
     , mongoose = require('mongoose')
+    , passport = require('passport')
     , db = mongoose.connect(config.db)
     ;
 
 
 //Bootstrap db connection
 
-var app = express();
-require('./config/express')(app);
-require('./config/routes')(app);
 
 
 var models_path = __dirname + '/app/models';
@@ -35,6 +33,12 @@ var walk = function(path) {
     });
 };
 walk(models_path);
+require('./config/passport')(passport);
+
+var app = express();
+require('./config/express')(app,passport,db);
+require('./config/routes')(app);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

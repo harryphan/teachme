@@ -8,7 +8,8 @@ var ThoughtSchema = new Schema({
         content:String,
         author:{
             type: Schema.ObjectId,
-            ref:'User'
+            ref:'User',
+            trim:true
         }
     },
     answer:{
@@ -25,6 +26,10 @@ var ThoughtSchema = new Schema({
     created: {
         type: Date,
         default: Date.now
+    },
+    public:{
+        type:Boolean,
+        default:false
     },
     parents:[{
         type: Schema.ObjectId,
