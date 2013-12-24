@@ -3,3 +3,14 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  div
+    form(action='/thoughts',method='post')
+        div
+            label Question
+                input(id='content',type='text',value='',name='content')
+        div
+            label Public?
+                input(id='public',type='checkbox',name='public')
+        div
+            input(type='submit',value='Ask')
+  

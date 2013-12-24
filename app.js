@@ -33,7 +33,7 @@ var walk = function(path) {
     });
 };
 walk(models_path);
-require('./config/passport')(passport);
+require('./config/passport')(passport); 
 
 var app = express();
 require('./config/express')(app,passport,db);

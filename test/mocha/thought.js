@@ -58,6 +58,7 @@ describe('<Unit Test>', function() {
                 thought.save(function(err) {
                     should.not.exist(err);
                 });
+                
                 var thought2=new Thought({
                     question:{
                         content:'What is a holiday?',
@@ -68,14 +69,14 @@ describe('<Unit Test>', function() {
                 thought2.save(function(err) {
                     should.not.exist(err);
                 });
-                thought.children=[thought2];
+                
+                thought.children = [thought2];
+                console.log("done saving");
                 return thought.save(function(err) {
                     should.not.exist(err);
                     done();
                 });
             });
-
-           
         });
         afterEach(function(done) {
             Thought.remove({});

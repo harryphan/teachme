@@ -36,8 +36,8 @@ var ThoughtSchema = new Schema({
         ref:'Thought'
     }],
     children:[{
-        type: Schema.ObjectId,
-        ref:'Thought' 
+        type:Schema.ObjectId,
+        ref:'Thought'
     }]
 });
 
