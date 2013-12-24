@@ -17,7 +17,8 @@
     "passport-twitter": "latest",
     "passport-github": "latest",
     "passport-google-oauth": "latest",
-    "view-helpers": "latest"
+    "view-helpers": "latest",
+    "socket.io":"latest"
   },
    "devDependencies": {
         "should": "latest",
