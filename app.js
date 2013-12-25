@@ -35,7 +35,8 @@ walk(models_path);
 
 
 require('./config/passport')(passport); 
-
 require('./config/express')(app,passport,db);
 require('./config/routes')(app);
-app.listen(config.port);
+server.listen(config.port);
+
+require('./config/sockets')(io);
