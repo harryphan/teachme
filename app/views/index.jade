@@ -2,12 +2,13 @@ extends layout
 
 block menu
     div(id='menu')
-        p Sign in
+        div(id='faq-button') FAQ
+        div(id='signin-button') Sign in
 
 block search
     div(id='search')
         form(action='#', id='think')
-            div(id='search')
+            div(id='search-input')
                 input(id='query',type='text', value='',name='query')
                 input(type='submit',value='Think')
   
@@ -22,3 +23,6 @@ block search
     //         input(type='submit',value='Ask')
 block thoughts
     div(id='thoughts')
+block faq
+    include faq.html
+

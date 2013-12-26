@@ -6,7 +6,7 @@ module.exports=function(){
     
     
     function loadAll(callback){
-        Thought.find({},function(err, thoughts) {
+        Thought.find({},'question id',function(err, thoughts) {
             if (err) {
                 callback(err);
             } else {
