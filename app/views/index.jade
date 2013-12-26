@@ -1,8 +1,11 @@
 extends layout
 
-block content
-    h1= title
-    div
+block menu
+    div(id='menu')
+        p Sign in
+
+block search
+    div(id='search')
         form(action='#', id='think')
             div(id='search')
                 input(id='query',type='text', value='',name='query')
@@ -17,4 +20,5 @@ block content
     //             input(id='public',type='checkbox',name='public')
     //     div
     //         input(type='submit',value='Ask')
+block thoughts
     div(id='thoughts')

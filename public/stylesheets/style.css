@@ -6,3 +6,26 @@ body {
 a {
   color: #00B7FF;
 }
+
+#menu {
+  background-color: #000000;
+  color: #FFFFFF;
+  position:fixed;
+  top:0;
+  right:0;
+  height:30px;
+}
+#menu p{
+    display:block;
+    margin:0.5em 0.5em;
+}
+
+#thoughts{
+    padding:1em;
+}
+.thought{
+    padding:.5em;
+    margin:.5em;
+    border-radius: 15px;
+    background-color:#aaaaaa;
+}
