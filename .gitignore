@@ -6,7 +6,7 @@ lib-cov
 *.out
 *.pid
 *.gz
-development.js
+app/config/env/development.js
 
 pids
 logs

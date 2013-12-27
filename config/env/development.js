@@ -1,5 +1,5 @@
 module.exports = {
-    db: "",
+    db: "mongodb://teach:teach@paulo.mongohq.com:10030/mean-dev",
     app: {
         name: "Teach me"
     },

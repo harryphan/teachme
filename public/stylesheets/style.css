@@ -1,22 +1,23 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 #faq{
-    display:none
+    display:none;
+    background:transparent;
 }
 #menu {
-  background-color: #000000;
-  color: #FFFFFF;
-  position:fixed;
-  top:0;
-  right:0;
-  height:30px;
+    background-color: #000000;
+    color: #FFFFFF;
+    position:fixed;
+    top:0;
+    right:0;
+    height:30px;
 }
 #menu div{
     display:inline-block;
@@ -36,4 +37,45 @@ a {
     margin:.5em;
     border-radius: 5px;
     background-color:#aaaaaa;
+}
+#mask{
+    position:fixed;
+    z-index:10;
+    left:0;
+    top:0;
+    background-color:#666;
+    opacity:0.5;
+    display:none;
+}
+#thought-display{
+    position:fixed;
+    left:0;
+    top:0;
+    background-color:#FFF;
+    z-index:11;  
+    display:none;
+}
+#thought-display div{
+    float:left;
+    width:100%;
+    border:1px solid red;
+}
+#tmp{
+    color:black;
+}
+#current-thought{
+    height:auto;
+}
+#children{
+    height:100px;
+}
+#parents{
+    
+    height:100px;
+}
+.modal {
+    background-color:#fff;
+    display:none;
+    opacity:0.8;
+    
 }
