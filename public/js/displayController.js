@@ -1,6 +1,8 @@
 define('displayController',['jqueryui'],function($){
-    $(document).bind('appendThought',function(event){
-        var val = event.detail;
+    /**
+     * data loading events
+     **/
+    $(document).bind('appendThought',function(event, val){
         var thought= $('<div/>',{
             class:'thought',
             text:val.question.content,
@@ -11,12 +13,54 @@ define('displayController',['jqueryui'],function($){
             var maskWidth = window.innerWidth;
             $('#mask').css({'display':'block','width':maskWidth,'height':maskHeight});
             $('#thought-display').css({'display':'inline-block','width':maskWidth,'height':maskHeight});
-            $(document).trigger({type:'getThought', detail:val._id});
+            $('#thought-display > div').css({'width':maskWidth});
+            $(document).trigger('getThought', val._id);
         });
         $('#thoughts').append(thought);
     });
     
+    $(document).bind('loadThoughts',function(event, results){
+        $('#thoughts').empty();
+        $.each(results,function(key, val){
+            $(document).trigger('appendThought', val);
+        });
+    });
     
+    $(document).bind('loadThought',function(event,result){
+        $('#tmp').empty();
+        $('#children').empty();
+        $('#parents').empty();
+        $('#question').text(result.question.content);
+        $('#answer').text(result.answer.content);
+    });
+    
+   
+    $(document).bind('loadChildren',function(event,result){
+        $.each(result, function(key,val){
+            $(document).trigger('appendThoughtNode', ['#children',val]);
+        });
+    });
+    $(document).bind('loadParents',function(event,result){
+        $.each(result, function(key,val){
+            $(document).trigger('appendThoughtNode', ['#parents',val]);
+        });
+    });
+    
+    $(document).bind('appendThoughtNode',function(event, target, result){
+        
+        var node = $('<span/>',{
+            class:'thought-node',
+            text:result.question.content,
+            id:result._id
+        });
+        node.bind('click',function(event){
+            $(document).trigger('getThought', result._id);
+        });
+        $(target).append(node);
+    });
+    /**
+     * browser events
+     * */
     $('#mask').click(function(event){
         $(this).hide();
         $('#thought-display').hide();
@@ -26,7 +70,8 @@ define('displayController',['jqueryui'],function($){
         var maskHeight = window.innerHeight;
         var maskWidth = window.innerWidth;
         $('#mask').css({'width':maskWidth,'height':maskHeight});
-        $('#thought-display').css({'width':maskWidth,'height':maskHeight});
+        $('#thought-display').css({'width':maskWidth});
+        $('#thought-display > div').css({'width':maskWidth});
     });
     
     $(document).keyup(function(event) {
@@ -35,31 +80,5 @@ define('displayController',['jqueryui'],function($){
             $('#mask').hide();
         }
     });
-    
-    $(document).bind('loadThoughts',function(event){
-        $('#thoughts').empty();
-        $.each(event.detail,function(key, val){
-            $(document).trigger({type:'appendThought', detail:val});
-        });
-    });
-    
-    $(document).bind('loadThought',function(event){
-        $('#tmp').empty();
-        var result = event.detail;
-        $('#tmp').append(JSON.stringify(result));
-    });
-    
-    $(document).bind('loadChildren',function(event){
-        $('#children').empty();
-        var result = event.detail;
-        $('#children').append('<p>'+JSON.stringify(result)+'</p>');
-    });
-    
-    $(document).bind('loadParents',function(event){
-        $('#parents').empty();
-        var result = event.detail;
-        $('#parents').append('<p>'+JSON.stringify(result)+'</p>');
-    });
-    
     
 })

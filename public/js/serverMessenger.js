@@ -2,22 +2,22 @@ define('serverMessenger',['socketio'],function(io){
     var socket = io.connect();
     socket.on('connect', function(){
         socket.on('thoughts', function (data) {
-            $(document).trigger({type:'loadThoughts', detail:data});
+            $(document).trigger('loadThoughts',[data]);
         });
         socket.on('thought', function (data) {
-            $(document).trigger({type:'loadThought', detail:data});
+            $(document).trigger('loadThought',[data]);
         });
         socket.on('children', function (data) {
-            $(document).trigger({type:'loadChildren', detail:data});
+            $(document).trigger('loadChildren',[data]);
         });
         socket.on('parents', function (data) {
-            $(document).trigger({type:'loadParents', detail:data});
+            $(document).trigger('loadParents',[data]);
         });
     });
     $(document).bind('loadAll', function(event){
         socket.emit('loadAll');
     });
-    $(document).bind('getThought', function(event){
-        socket.emit('getThought',{id:event.detail});
+    $(document).bind('getThought', function(event, id){
+        socket.emit('getThought',{id:id});
     });
 });

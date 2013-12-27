@@ -43,34 +43,60 @@ a {
     z-index:10;
     left:0;
     top:0;
-    background-color:#666;
+    background-color:#333;
     opacity:0.5;
     display:none;
 }
 #thought-display{
-    position:fixed;
-    left:0;
+    position:absolute;
     top:0;
-    background-color:#FFF;
-    z-index:11;  
+    left:0;
+    z-index:11;
     display:none;
 }
 #thought-display div{
-    float:left;
-    width:100%;
-    border:1px solid red;
+    text-align:center;
 }
-#tmp{
-    color:black;
-}
+
 #current-thought{
+    position:absolute;
+    top:50%;
+    left:0;
     height:auto;
 }
 #children{
+    position:absolute;
+    bottom:0;
+    left:0;
     height:100px;
 }
+.thought-node{
+    padding:.5em;
+    margin:.5em;
+    border-radius: 5px;
+    background-color:#fff;
+}
+.parent{
+    padding:.5em;
+    margin:.5em;
+    border-radius: 5px;
+    background-color:#fff;
+}
+#node{
+    display: inline-block;
+    text-align:center;
+    width:50%;
+}
+.node{
+    padding:.5em;
+    margin:.5em;
+    border-radius: 5px;
+    background-color:#fff;
+}
 #parents{
-    
+    position:absolute;
+    top:0;
+    left:0;
     height:100px;
 }
 .modal {
