@@ -3,8 +3,13 @@ extends layout
 block menu
     div(id='menu')
         div(id='faq-button') FAQ
-        div(id='signin-button') Sign in
-
+        unless user
+            div(id='signin-button') Sign in
+        else
+            div(id='username') #{user.name}
+            div(id='signout-button')
+                a(href='/signout') Sign Out
+    
 block search
     div(id='search')
         form(action='#', id='think')
@@ -25,4 +30,6 @@ block thoughts
     div(id='thoughts')
 block faq
     include faq.html
+block signin
+    include signin.html
 

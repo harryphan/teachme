@@ -20,4 +20,8 @@ define('serverMessenger',['socketio'],function(io){
     $(document).bind('getThought', function(event, id){
         socket.emit('getThought',{id:id});
     });
+    
+    $(document).bind('facebook-login', function(event){
+        socket.emit('facebook-login');
+    });
 });

@@ -1,9 +1,6 @@
 
 /**
- * 
  * Module dependencies.
- * 
- * 
  */
 
 var express = require('express')
@@ -13,6 +10,7 @@ var express = require('express')
     , config = require('./config/config')
     , mongoose = require('mongoose')
     , passport = require('passport')
+    , auth = require('./config/middlewares/authorization')
     , db = mongoose.connect(config.db)
     , app = express()
     , server = require('http').createServer(app)
@@ -36,7 +34,7 @@ var walk = function(path) {
 walk(models_path);
 require('./config/passport')(passport); 
 require('./config/express')(app,passport,db);
-require('./config/routes')(app);
+require('./config/routes')(app,passport,auth);
 server.listen(config.port);
 
 require('./config/sockets')(io);

@@ -1,4 +1,7 @@
-define('displayController',['jqueryui'],function($){
+define('displayController',['jqueryui', 'arbor'],function($){
+    
+    
+    
     /**
      * data loading events
      **/

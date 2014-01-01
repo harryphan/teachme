@@ -1,12 +1,12 @@
 module.exports = {
-    db: "mongodb://teach:teach@paulo.mongohq.com:10030/mean-dev",
+    db: "",
     app: {
         name: "Teach me"
     },
     facebook: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
-        callbackURL: "http://localhost:3000/auth/facebook/callback"
+        clientID: "",
+        clientSecret: "",
+        callbackURL: "https://teachme2-c9-harryphan.c9.io/auth/facebook/callback"
     },
     twitter: {
         clientID: "CONSUMER_KEY",
@@ -19,8 +19,8 @@ module.exports = {
         callbackURL: "http://localhost:3000/auth/github/callback"
     },
     google: {
-        clientID: "APP_ID",
-        clientSecret: "APP_SECRET",
-        callbackURL: "http://localhost:3000/auth/google/callback"
+        clientID: "",
+        clientSecret: "",
+        callbackURL: "https://teachme2-c9-harryphan.c9.io/auth/google/callback"
     }
 }
