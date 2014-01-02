@@ -33,10 +33,18 @@ module.exports=function(){
             }
         });
     }
-    
+    function getThoughtsByKeywords(terms, callback){
+        Thought.textSearch('3d', function (err, output) {
+            if (err){
+                callback(err);
+            }
+            callback(output);
+        });
+    }
     return{
         loadAll:loadAll,
         getThoughtById:getThoughtById,
-        getThoughtsByIds:getThoughtsByIds
+        getThoughtsByIds:getThoughtsByIds,
+        getThoughtsByKeywords:getThoughtsByKeywords
     }
 }

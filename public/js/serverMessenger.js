@@ -24,4 +24,7 @@ define('serverMessenger',['socketio'],function(io){
     $(document).bind('facebook-login', function(event){
         socket.emit('facebook-login');
     });
+    $(document).bind('search', function(event, data){
+        socket.emit('search', data);
+    });
 });

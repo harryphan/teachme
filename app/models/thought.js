@@ -1,11 +1,13 @@
 
-var mongoose = require('mongoose'),
-    config = require('../../config/config'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose')
+    ,textSearch = require('mongoose-text-search')
+    ,Schema = mongoose.Schema
+    ;
 
 var ThoughtSchema = new Schema({
     question:{
         content:String,
+        tags:[String],
         author:{
             type: Schema.ObjectId,
             ref:'User',
@@ -18,6 +20,7 @@ var ThoughtSchema = new Schema({
             default: '',
             trim: true
         },
+        tags:[String],
         author:{
             type: Schema.ObjectId,
             ref:'User'
@@ -40,6 +43,9 @@ var ThoughtSchema = new Schema({
         ref:'Thought'
     }]
 });
+
+ThoughtSchema.plugin(textSearch);
+ThoughtSchema.index({ 'question.tags': 'text'});
 
 /**
  * Validations

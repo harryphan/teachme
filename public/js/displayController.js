@@ -1,7 +1,6 @@
 define('displayController',['jqueryui', 'arbor'],function($){
     
     
-    
     /**
      * data loading events
      **/
@@ -24,9 +23,13 @@ define('displayController',['jqueryui', 'arbor'],function($){
     
     $(document).bind('loadThoughts',function(event, results){
         $('#thoughts').empty();
-        $.each(results,function(key, val){
-            $(document).trigger('appendThought', val);
-        });
+        if(results.length===0 ){
+            $('#thoughts').text('No questions found. Click to form a question.');
+        }else{
+            $.each(results,function(key, val){
+                $(document).trigger('appendThought', val);
+            });
+        }
     });
     
     $(document).bind('loadThought',function(event,result){
@@ -34,7 +37,11 @@ define('displayController',['jqueryui', 'arbor'],function($){
         $('#children').empty();
         $('#parents').empty();
         $('#question').text(result.question.content);
-        $('#answer').text(result.answer.content);
+        if(result.answer.content && result.answer.content!==''){
+            $('#answer').text(result.answer.content);
+        }else{
+            $('#answer').text('No Answer Yet. Click to answer');
+        }
     });
     
    

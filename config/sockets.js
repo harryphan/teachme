@@ -1,5 +1,8 @@
 
-var thoughts = require('../app/dao/thoughtDAO')();
+var thoughts = require('../app/dao/thoughtDAO')()
+    ,natural = require('natural')
+    ,tokenizer = new natural.WordTokenizer()
+    ;
 
 module.exports=function(io){
     
@@ -13,7 +16,11 @@ module.exports=function(io){
             console.log(data); 
         });
         socket.on('search', function (data) {
+            var tokens = tokenizer.tokenize(data);
             console.log(data);
+            thoughts.getThoughtsByKeywords(data,function(res){
+                socket.emit('thoughts',(res.results));
+            });
         });
         socket.on('getThought', function(data){
             var id = data.id;

@@ -21,7 +21,7 @@ require.config({
     }
 });
 
-define(['jqueryui','arbor','serverMessenger', 'displayController','menuController'], function($, arbor){
+require(['jqueryui','serverMessenger', 'displayController','menuController'], function($){
     $(document).ready(function(){
         // var sys = arbor.ParticleSystem(0, 0, 1) // create the system with sensible repulsion/stiffness/friction
         // sys.parameters({gravity:false}) // use center-gravity to make the graph settle nicely (ymmv)
@@ -35,6 +35,7 @@ define(['jqueryui','arbor','serverMessenger', 'displayController','menuControlle
         // sys.addNode('f', {alone:true, mass:.25})
         $('#think').submit(function( event ) {
             event.preventDefault();
+            $(document).trigger('search',[$('#query').val()]);
         });
         
         $(document).trigger({
