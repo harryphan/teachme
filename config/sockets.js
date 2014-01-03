@@ -23,9 +23,12 @@ module.exports=function(io){
             console.log(data); 
         });
         socket.on('search', function (data) {
-            var tokens = tokenizer.tokenize(data);
-            thoughts.getThoughtsByKeywords(data,function(res){
-                socket.emit('thoughts',(res.results));
+            var tokens = tokenizer.tokenize(data.toLowerCase());
+            // thoughts.getThoughtsByKeywords(tokens,function(res){
+            //     socket.emit('thoughts',res);
+            // });
+            thoughts.getThoughtsByTerms(tokens,function(res){
+                socket.emit('thoughts',res);
             });
         });
         socket.on('getThought', function(data){

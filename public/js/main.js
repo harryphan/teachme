@@ -1,10 +1,7 @@
 require.config({
     baseUrl: 'js',
     shim: {
-        'socketio': {
-          exports: 'io'
-        },
-        'jqueryui': {
+        jqueryui: {
             exports: '$',
             deps: ['jquery']
         },

@@ -41,11 +41,21 @@ module.exports=function(){
         });
     }
     function getThoughtsByKeywords(terms, callback){
-        Thought.textSearch('3d', function (err, output) {
-            if (err){
+        Thought.find({'question.tags':{$in:terms}},'question id',function(err, thoughts) {
+            if (err) {
                 callback(err);
+            } else {
+                console.log(thoughts);
+                callback(thoughts);
             }
-            callback(output);
+        });
+    }
+    function getThoughtsByTerms(terms, callback){
+        Thought.textSearch('moon', function (err, output) {
+            if (err){
+                console.log(err); 
+            }
+            console.log(output);
         });
     }
     return{
@@ -53,6 +63,7 @@ module.exports=function(){
         createThought:createThought,
         getThoughtById:getThoughtById,
         getThoughtsByIds:getThoughtsByIds,
+        getThoughtsByTerms:getThoughtsByTerms,
         getThoughtsByKeywords:getThoughtsByKeywords
     }
 }

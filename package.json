@@ -20,7 +20,8 @@
     "view-helpers": "latest",
     "socket.io":"latest",
     "mongoose-text-search":"latest",
-    "natural":"latest"
+    "natural":"latest",
+    "socket.io-clusterhub":"latest"
   },
    "devDependencies": {
         "should": "latest",
