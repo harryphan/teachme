@@ -25,7 +25,7 @@ module.exports=function(){
         }
        
         var thought = new Thought(tmp);
-        thought.save(function(err) {
+        thought.save(function(err) { 
             if (err) {
                 return res.send('users/signup', {
                     errors: err.errors,

@@ -21,7 +21,7 @@ require.config({
     }
 });
 
-require(['jqueryui','serverMessenger', 'displayController','menuController'], function($){
+require(['jqueryui','serverMessenger','controllers/thoughtFormController', 'controllers/displayController','controllers/menuController'], function($){
     $(document).ready(function(){
         // var sys = arbor.ParticleSystem(0, 0, 1) // create the system with sensible repulsion/stiffness/friction
         // sys.parameters({gravity:false}) // use center-gravity to make the graph settle nicely (ymmv)
@@ -37,9 +37,10 @@ require(['jqueryui','serverMessenger', 'displayController','menuController'], fu
             event.preventDefault();
             $(document).trigger('search',[$('#query').val()]);
         });
-        
-        $(document).trigger({
-            type:"loadAll"
-        });
+        $('#create-thought').submit(function(event){
+            event.preventDefault();
+            $(document).trigger('create');
+        })
+        $(document).trigger('loadAll');
     });
 });

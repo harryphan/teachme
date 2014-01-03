@@ -1,0 +1,10 @@
+//- note: 'user' variable passed in from index.js 
+
+div(id='menu')
+    div(id='faq-button') FAQ
+    unless user
+        div(id='signin-button') Sign in
+    else
+        div(id='username') #{user.name}
+        div(id='signout-button')
+            a(href='/signout') Sign Out

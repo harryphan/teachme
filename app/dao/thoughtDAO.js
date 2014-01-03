@@ -3,8 +3,15 @@ var mongoose = require('mongoose'),
     ;
     
 module.exports=function(){
-    
-    
+    function createThought(thought, callback){
+        thought.save(function(err) { 
+            if (err) {
+                callback(err);
+            } else {
+                callback(true);
+            }
+        });
+    }
     function loadAll(callback){
         Thought.find({parents:[]},'question id',function(err, thoughts) {
             if (err) {
@@ -43,6 +50,7 @@ module.exports=function(){
     }
     return{
         loadAll:loadAll,
+        createThought:createThought,
         getThoughtById:getThoughtById,
         getThoughtsByIds:getThoughtsByIds,
         getThoughtsByKeywords:getThoughtsByKeywords

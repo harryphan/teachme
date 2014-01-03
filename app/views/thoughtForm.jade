@@ -1,0 +1,19 @@
+//- note: 'user' variable passed in from index.js 
+
+div(id='thought-form')
+    form(action='#', id='create-thought')
+        div(id='thought-input')
+            div(class='thought-form-element')
+                label(for='question-content') Question:
+                textarea(id='question-content', value='',name='question-content')
+                if user
+                    input(type='hidden',name='question-author',id='question-author', value=user._id)
+            div(class='thought-form-element')
+                label(for='answer-content') Answer:
+                textarea(id='answer-content', value='',name='answer-content')
+                if user
+                    input(type='hidden',name='answer-author',id='answer-author', value=user._id)
+            div(class='thought-form-element')
+                label(for='visibility') Visible to public?
+                input(id='visibility', type='checkbox', value='',name='visibility')
+            input(type='submit',value='Think')

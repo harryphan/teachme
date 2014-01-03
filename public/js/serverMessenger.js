@@ -27,4 +27,7 @@ define('serverMessenger',['socketio'],function(io){
     $(document).bind('search', function(event, data){
         socket.emit('search', data);
     });
+    $(document).bind('create-thought', function(event, data){
+        socket.emit('create', data);
+    });
 });

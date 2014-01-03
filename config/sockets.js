@@ -2,6 +2,8 @@
 var thoughts = require('../app/dao/thoughtDAO')()
     ,natural = require('natural')
     ,tokenizer = new natural.WordTokenizer()
+    ,mongoose = require('mongoose')
+    ,Thought = mongoose.model('Thought')
     ;
 
 module.exports=function(io){
@@ -10,14 +12,18 @@ module.exports=function(io){
     io.sockets.on('connection', function (socket) {
         
         socket.on('create', function(data){
-            console.log(data); 
+            var thought = new Thought(data);
+            thought.question.tags=tokenizer.tokenize(thought.question.content);
+            thought.answer.tags=tokenizer.tokenize(thought.answer.content);
+            thoughts.createThought(thought,function(res){
+                console.log(res);
+            });
         });
         socket.on('getChildren', function(data){
             console.log(data); 
         });
         socket.on('search', function (data) {
             var tokens = tokenizer.tokenize(data);
-            console.log(data);
             thoughts.getThoughtsByKeywords(data,function(res){
                 socket.emit('thoughts',(res.results));
             });
