@@ -6,7 +6,7 @@ module.exports = {
     facebook: {
         clientID: "",
         clientSecret: "",
-        callbackURL: "https://teachme2-c9-harryphan.c9.io/auth/facebook/callback"
+        callbackURL: "https://teachme-c9-harryphan.c9.io/auth/facebook/callback"
     },
     twitter: {
         clientID: "CONSUMER_KEY",
@@ -21,6 +21,6 @@ module.exports = {
     google: {
         clientID: "",
         clientSecret: "",
-        callbackURL: "https://teachme2-c9-harryphan.c9.io/auth/google/callback"
+        callbackURL: "https://teachme-c9-harryphan.c9.io/auth/google/callback"
     }
 }

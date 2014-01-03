@@ -8,6 +8,10 @@ block search
         form(action='#', id='think')
             div(id='search-input')
                 input(id='query',type='text', value='',name='query')
+                if user
+                    input(id='userid',type='hidden',value=user._id)
+                else
+                    input(id='userid',type='hidden',value='')
                 input(type='submit',value='Think')
     //-
         form(action='#', onsubmit='doSomething();return false;')

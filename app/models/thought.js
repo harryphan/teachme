@@ -7,7 +7,6 @@ var mongoose = require('mongoose')
 var ThoughtSchema = new Schema({
     question:{
         content:String,
-        tags:[String],
         author:{
             type: Schema.ObjectId,
             ref:'User',
@@ -20,7 +19,6 @@ var ThoughtSchema = new Schema({
             default: '',
             trim: true
         },
-        tags:[String],
         author:{
             type: Schema.ObjectId,
             ref:'User'
@@ -45,7 +43,7 @@ var ThoughtSchema = new Schema({
 });
 
 ThoughtSchema.plugin(textSearch);
-ThoughtSchema.index({ 'question.tags': 'text'});
+ThoughtSchema.index({ 'question.content': 'text'});
 
 /**
  * Validations

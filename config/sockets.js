@@ -13,8 +13,6 @@ module.exports=function(io){
         
         socket.on('create', function(data){
             var thought = new Thought(data);
-            thought.question.tags=tokenizer.tokenize(thought.question.content);
-            thought.answer.tags=tokenizer.tokenize(thought.answer.content);
             thoughts.createThought(thought,function(res){
                 console.log(res);
             });
@@ -23,12 +21,11 @@ module.exports=function(io){
             console.log(data); 
         });
         socket.on('search', function (data) {
-            var tokens = tokenizer.tokenize(data.toLowerCase());
-            // thoughts.getThoughtsByKeywords(tokens,function(res){
-            //     socket.emit('thoughts',res);
-            // });
-            thoughts.getThoughtsByTerms(tokens,function(res){
-                socket.emit('thoughts',res);
+            thoughts.getThoughtsByTerms(data.query,data.userid,function(res){
+                var stuff = res.results.map(function(item){
+                    return item.obj;
+                });
+                socket.emit('thoughts',stuff);
             });
         });
         socket.on('getThought', function(data){
@@ -48,7 +45,8 @@ module.exports=function(io){
             })
         });
         socket.on('loadAll', function(data){
-            thoughts.loadAll(function(result){
+            
+            thoughts.loadAll(data ? data.userid:null,function(result){
                 socket.emit('thoughts',result);
             });
         })

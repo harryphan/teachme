@@ -32,12 +32,12 @@ require(['jqueryui','serverMessenger','controllers/thoughtFormController', 'cont
         // sys.addNode('f', {alone:true, mass:.25})
         $('#think').submit(function( event ) {
             event.preventDefault();
-            $(document).trigger('search',[$('#query').val()]);
+            $(document).trigger('search',{query:$('#query').val(),user:$('#userid').val()});
         });
         $('#create-thought').submit(function(event){
             event.preventDefault();
             $(document).trigger('create');
         })
-        $(document).trigger('loadAll');
+        $(document).trigger('loadAll',{user:$('#userid').val()});
     });
 });

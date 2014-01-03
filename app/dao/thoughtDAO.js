@@ -12,8 +12,8 @@ module.exports=function(){
             }
         });
     }
-    function loadAll(callback){
-        Thought.find({parents:[]},'question id',function(err, thoughts) {
+    function loadAll(userid, callback){
+        Thought.find({parents:[], $or:[{public:true},{public:false,'question.author':userid}]},'question id',function(err, thoughts) {
             if (err) {
                 callback(err);
             } else {
@@ -50,12 +50,18 @@ module.exports=function(){
             }
         });
     }
-    function getThoughtsByTerms(terms, callback){
-        Thought.textSearch('moon', function (err, output) {
+    function getThoughtsByTerms(terms, userid, callback){
+        var options = {
+            project: 'question id'                // do not include the `created` property
+          , filter: { $or:[{public: true},{public:false,'question.author':userid}]} // casts queries based on schema
+          , limit: 10
+          , lean:false
+        };
+        Thought.textSearch(terms,options, function (err, output) {
             if (err){
                 console.log(err); 
             }
-            console.log(output);
+            callback(output);
         });
     }
     return{
